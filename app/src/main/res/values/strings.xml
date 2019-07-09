@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="app_name">Jinhua</string>
+    <string name="help">1.input printer name--&amp;gt;open(only can open device which has bounded.)\n
+    					2.menu--&amp;gt;open connection(can open device which has bounded and new device)</string>
+    <string name="input_printer_name">Input printer name</string>
+    <!--BTPrinterDemo-->
+    <string name="not_connected">Please Connect BT Printer. (Menu-&amp;gt;Connect)</string>
+    <string name="bt_not_enabled">Bluetooth is not available</string>
+    <string name="bt_has_on">Bluetooth has opened</string>
+    <string name="bt_has_off">Bluetooth has closed</string>
+    <string name="bt_connecting">Bluetooth connecting...</string>
+    <string name="bt_connect_success">Bluetooth connect success</string>
+    <string name="bt_connect_failed">Bluetooth connect failed</string>
+    <string name="bt_connect_closed">Bluetooth connect has closed</string>
+    <string name="bt_print_success">Print Success</string>
+    <string name="bt_print_failed">Print Failed</string>
+    <string name="title_connecting">Connecting...</string>
+    <string name="title_connected">Connected</string>
+    <string name="title_not_connected">Not Connected.</string>
+    <string name="tip">Suggestion </string>
+    <string name="tip_content">This machine does not support label printing, do you want to continue?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+
+    <!--  DeviceListActivity -->
+    <string name="scanning">Scanning for devices...</string>
+    <string name="select_device">Please select a device to connect</string>
+    <string name="none_paired">No devices has been paired</string>
+    <string name="has_paired">paired</string>
+    <string name="not_paired">not paired</string>
+    <string name="rePaire_connect">Re-pair And Connect</string>
+    <string name="unpair">Unpair</string>
+    <string name="paire_connect">Pair And Connect</string>
+    <string name="connect_paired">Connect</string>
+    <string name="select_options">Select Options</string>
+    <string name="none_found">No devices found</string>
+    <string name="no_bounded_device">Don\'t found device which name start with %s</string>
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="title_other_devices">Other Available Devices</string>
+    <string name="button_scan">Scan for new devices</string>
+    <string name="button_back">Back</string>
+    <!-- Options Menu -->
+    <string name="connect">Open Connection</string>
+    <string name="disconnect">Close Connection</string>
+    <!-- main.xml -->
+    <string name="connect_type">Connect Type</string>
+    <string name="connect_bluetooth">Bluetooth</string>
+    <string name="connect_usb">USB</string>
+    <string name="connect_wifi">WIFI</string>
+    <string name="edit_hint">Printer Name(such as T9)</string>
+    <string name="print_text">Print Text</string>
+    <string name="print_table">Print Table</string>
+    <string name="print_web">Print Web</string>
+    <string name="print_image">Print Image</string>
+    <string name="query_printer_status">Query printer status</string>
+    <string name="print_custom_image">Print Custom Image</string>
+    <string name="print_note">Print Note</string>
+    <string name="print_title">Print Title</string>
+    <string name="print_lable">Print Lable</string>
+    <string name="print_pdf">Print PDF</string>
+    <string name="bar_code_hint">Input bar code, such as: No.123456</string>
+    <string name="print_bar_code">Print Bar Code</string>
+    <string name="open_file">open file</string>
+    <string name="save_file">save file</string>
+    <string name="save_as_file">save as file</string>
+    <string name="print_file">print text</string>
+    <string name="save_ok">OK</string>
+    <string name="save_cancel">Cancel</string>
+    <string name="toast_input_name">Please input file name!</string>
+    <string name="toast_save_null">Please don\'t save null file!</string>
+    <string name="toast_print_null">Please don\'t print null file!</string>
+    <string name="toast_save_success">Save success!</string>
+    <string name="input_file_name">Please input file name:</string>
+    <string name="back_to_root">Back to root...</string>
+    <string name="back_to_pre">Back to previous...</string>
+    <string name="file_manager">File Manager</string>
+    <string name="editText_print">Text Print</string>
+    <string name="example_text">T801 for quality and beauty, without much decoration, smooth lines,
+        classic mirror cover, green case and luminous band in modeling, to integrate business,
+        fashion perfect, users feel that the printer can add a little
+        surprise and expectation for aesthetic fatigue market.
+    </string>
+    <string name="company_name">printer company</string>
+    <string name="text_point24">This is a line of mixed-format text, 24 point font</string>
+    <string name="text_strike_point18">This is the line of strikethrough text, 18-point font</string>
+    <string name="text_underLine_point18">This is the line of underlined text, 18-point font</string>
+    <string name="text_common_point18">This is a line of plain text, 18-point font</string>
+    <string name="shop_company_title">NingBo YueHu Shop</string>
+    <string name="shop_num">Shop Num: </string>
+    <string name="shop_note_num">Receipt Num: </string>
+    <string name="shop_cashier_num">Cashier Num: </string>
+    <string name="shop_receipt_date">Receipt Date: </string>
+    <string name="shop_print_time">Print Time: </string>
+    <string name="shop_goods_number">Goods Quantity: </string>
+    <string name="shop_goods_total_price">Total: </string>
+    <string name="shop_payment">Payment: </string>
+    <string name="shop_change">Change: </string>
+    <string name="shop_company_name">Company Name: The Jiangsu Yiwuyishi Houseware Co., Ltd.</string>
+    <string name="shop_company_site">Company Site: </string>
+    <string name="shop_company_address">Address: Dongchang Road on the 12th, Ningbo City, Jiangsu Province</string>
+    <string name="shop_company_tel">TEL: </string>
+    <string name="shop_Service_Line">Service Line: </string>
+    <string name="shop_thanks">Thank you,welcome to come again!</string>
+    <string name="shop_demo">Demo Version!</string>
+    <string name="note_title">Name; count; price; total</string>
+    <string name="coffee">Coffee</string>
+    <string name="tableware">Tableware</string>
+    <string name="peanuts">Fried peanuts</string>
+    <string name="cucumber">Garlic Cucumber</string>
+    <string name="frog">Griddle Frog</string>
+    <string name="rice">Rice</string>
+    <string name="company_sub_title">     Focused, reliable, excellent brand of specialty printers</string>
+    <string name="bags">Storage bags</string>
+    <string name="umbrella">Umbrella</string>
+    <string name="hook">Wire hook</string>
+    <string name="choose_barcode_type">BarCode Type:</string>
+    <string name="choose_paper_width">Paper Width:</string>
+    <string name="choose_printer_type">Printer Type:</string>
+    <string name="choose_Encoding">Encoding Type:</string>
+    <string name="printer_type_remin">Thermal</string>
+    <string name="printer_type_styuls">Stylus</string>
+    <string name="not_find_bluetooth">Not find Bluetooth</string>
+    <string name="all">All</string>
+    <string name="default_char">Please enter your barcode</string>
+    <string name="states_ok">OK</string>
+    <string name="states_lack_of_paper">The printer is short of paper</string>
+    <string name="states_uncap">Printer cover opening</string>
+    <string name="states_lack_of_paper_and_cover">The printer is short of paper and uncovers the cover.</string>
+    <string name="states_cutter_error">Cutter error</string>
+    <string name="states_overtemperature">Printer overtemperature</string>
+    <string name="states_cutter_error_and_over_temperature">Cutter error, over temperature</string>
+    <string name="states_paper_shortage_and_cutter_error">Paper Shortage, Wrong Cutter</string>
+    <string name="states_paper_shortage_and_over_temperature">Lack of paper, over temperature</string>
+    <string name="states_paper_shortage_and_cutter_error_and_over_temperature">Paper Shortage, Wrong Cutter, Over Temperature</string>
+    <string name="states_error_in_opening_cover_and_cutting_knife">Error in opening cover and cutting knife</string>
+    <string name="states_open_cover_and_over_temperature">Open cover, over temperature</string>
+    <string name="states_uncover_and_cutter_errors_and_over_temperature">Open cover, wrong cutter, over temperature</string>
+    <string name="states_paper_shortage_and_Opening_and_cutter_error">Lack of paper, uncapping, cutter error</string>
+    <string name="states_paper_shortage_opening_cover_and_over_temperature">Paper Shortage, Open Cover, Over Temperature</string>
+    <string name="states_paper_shortage_open_cover_and_excessive_temperature_and_Cutter_Error">Lack of paper, uncapping, over temperature, wrong cutter</string>
+    <string name="states_other_error">Other error</string>
+    <string name="states_communication_anomaly">Communication anomaly</string>
+    <!-- PdfPrintActivity -->
+    <string name="getpdf">Get PDF</string>
+    <string name="default_pdf">Default PDF</string>
+    <string name="previous_page">Previous page</string>
+    <string name="next_page">Next page</string>
+    <string name="print_this_page">Print the current page</string>
+    <string name="print_all_pdf_document">Print the entire pdf file</string>
+
+    <!--utils-->
+    <string name="welcome">Welcome your visit</string>
+    <string name="shopping_name">Darunfa shopping centre</string>
+    <string name="text_one">Name: baisheng Machine: 0306</string>
+    <string name="text_two">Cashier: 12015162</string>
+    <string name="text_three">Commodity code: 139</string>
+    <string name="text_four">Women\'s shoes: 340</string>
+    <string name="text_five">Model: t2101</string>
+    <string name="text_six">Color: beige</string>
+    <string name="text_seven">Transaction number: 02010212352475412</string>
+
+    <string name="text_eight">Transaction identifier: 21542012584654234</string>
+    <string name="text_nine">Number：1</string>
+    <string name="text_ten">AMOUNT：240.00</string>
+    <string name="text_eleven">2016-3-4     16：32</string>
+    <string name="text_twelve">To return the goods by this invoice</string>
+    <string name="text_thirteen">To return the goods by this invoice</string>
+    <string name="text_fourteen">Customer liaison</string>
+    <string name="text_fiveteen">Thank you for your patronage. welcome again!</string>
+    <string name="line">----------------</string>
+    <string name="longline">------------------------------</string>
+    <string name="printCanvas">Print canvas effect display:</string>
+    <string name="print_128code">Print CODE128 effect demonstration:</string>
+    <string name="print_code39">Print code39 effect demonstration:</string>
+    <string name="print_codebar">Print CODEBAR effect demonstration:</string>
+    <string name="print_itf">Print ITF effect demonstration:</string>
+    <string name="print_code93">Print CODE93 effect demonstration:</string>
+    <string name="print_upc_a">Print UPC_A effect demonstration:</string>
+    <string name="print_jan13">Print JAN13 effect demonstration:</string>
+    <string name="print_jan8">Print JAN8 effect demonstration:</string>
+    <string name="print_qrcode">Print QRCODE effect demonstration:</string>
+    <string name="print_pdf417">Print PDF417 effect demonstration:</string>
+    <string name="print_datamatrix">Print DATAMATRIX effect demonstration:</string>
+    <string name="print_tickets_lines1">XX City summary</string>
+    <string name="print_tickets_lines2">Public security traffic management summary ounnshment decisoin</string>
+    <string name="print_tickets_lines3">Decision No.: 41010517000012</string>
+    <string name="print_tickets_lines4">Punished person: Zhang San</string>
+    <string name="print_tickets_lines5">Motor vehicle driver license file number: 410100350774</string>
+    <string name="print_tickets_lines6">Motor vehicle driver license/resident identity card number: 41012217912182710</string>
+    <string name="print_tickets_lines7">Quasi - driving type: C1E</string>
+    <string name="print_tickets_lines8">Contact information: 12345678911</string>
+    <string name="print_tickets_lines9">License plate number: Yu A66E88</string>
+    <string name="print_tickets_lines10">Vehicle type: small car</string>
+    <string name="print_tickets_lines11">Issuing Authority: Yu A</string>
+    <string name="print_tickets_lines12">Penalties: On May 25, 2012, at 16: 39, BJ City Liberation Road, BJ Province, motor vehicles were not at ease The traffic lights stipulate violations by peers ( code 13022 ).  In violation of [ illegal regulations ].  According to: " Chinese The People's Republic of China Road Safety Law" stipulates that it is decided to impose a fine on 200 yuan.</string>
+    <string name="print_tickets_lines13">Please hold this decision and pay the fine to the Industrial and Commercial Bank of China within 15 days.  Overdue payment, daily press Three percent of the amount of the fine plus a fine.</string>
+    <string name="print_tickets_lines14">If you do not accept this decision, you may apply for administrative reconsideration to XX Municipal Public Security Bureau or XX Municipal People Government within 60 days from the date of receipt of this decision. Or, in accordance with the Administrative Procedure Law of the People Republic of China, bring an administrative lawsuit to the Erqi District People Court of XX City within three months.  Place of punishment: Jiefang Road, XX City, XX Province</string>
+    <string name="print_tickets_lines15">Traffic police</string>
+    <string name="print_tickets_lines16">May 25, 2012</string>
+    <string name="print_tickets_lines17">Signature of the punished person:________</string>
+    <string name="print_tickets_lines18">date month year</string>
+    <string name="print_tickets_lines19">Note:________</string>
+    <string name="print_tickets_lines20">According to the " motor vehicle driver's license application and use regulations" remember 3 points</string>
+    <string name="print_tickets_lines21">First couplet: serve on the punished person</string>
+
+
+    <!--lable-->
+    <string name="lable_one">Test Nanjing distribution</string>
+    <string name="lable_two">Test Nanjing Qinhuai</string>
+    <string name="lable_three"></string>
+    <string name="lable_four">Test Date</string>
+    <string name="lable_five">Test Date</string>
+    <string name="lable_six"></string>
+    <string name="lable_seven"></string>
+    <string name="lable_eight">info</string>
+    <string name="lable_nine"></string>
+    <string name="lable_ten"></string>
+    <string name="lable_eleven"></string>
+    <string name="lable_twelve"></string>
+    <string name="lable_thirteen"></string>
+    <string name="lable_fourteen"></string>
+    <string name="lable_fifteen"></string>
+    <!--LableEdityActivity-->
+    <string name="title_name_1">title_name_1</string>
+    <string name="title_name_2">title_name_2</string>
+    <string name="title_name_3">title_name_3</string>
+    <string name="title_name_4">title_name_4</string>
+    <string name="title_name_5">title_name_5</string>
+    <string name="title_name_6">title_name_6</string>
+    <string name="title_name_7">title_name_7</string>
+    <string name="title_name_8">title_name_8</string>
+    <string name="title_name_9">title_name_9</string>
+    <string name="title_name_10">title_name_10</string>
+    <!--LableModeActivity-->
+    <string name="scan_text">Put the QR Code tape into the box and it can be scanned automatically</string>
+    <string name="tv_current_wifi">Present Wifi:</string>
+    <string name="switch_wifi">Switch WiFi</string>
+
+    <string name="Permissions_location">Location permission is turned on</string>
+    <string name="title_msg">绿色使命</string>
+
+
+    <string name="notifyTitle">Prompt</string>
+
+    <string name="gpsNotifyMsg">Current mobile phone scanning Bluetooth needs to open the positioning function</string>
+
+    <string name="setting">Go to settings</string>
+
+    <string name="cancel">Cancel</string>
+
+    <string name="start_scan">Start scanning</string>
+
+    <string name="stop_scan">Stop scanning</string>
+
+    <string name="expand_search_settings">Expand search settings</string>
+
+    <string name="retrieve_search_settings">Retrieve search settings</string>
+
+    <string name="connect_fail">connection failed</string>
+
+    <string name="active_disconnected">disconnect</string>
+
+    <string name="disconnected">Connection disconnect</string>
+
+    <string name="please_open_blue">Please turn on Bluetooth first</string>
+
+    <string name="select_operation_type">Select operation type</string>
+
+    <string name="characteristic">Characteristic</string>
+
+    <string name="data_changed">Data changes:</string>
+
+    <string name="read">Read</string>
+
+    <string name="write">Write</string>
+
+    <string name="open_notification">Open notification</string>
+
+    <string name="close_notification">Close notification</string>
+
+    <string name="service_list">Service list</string>
+
+    <string name="characteristic_list">Characteristic list</string>
+
+    <string name="console">Console</string>
+
+    <string name="name">Device broadcast name：</string>
+
+    <string name="mac">MAC:</string>
+
+    <string name="service">Service</string>
+
+    <string name="type">Service type (main service)</string>
+
+    <string name="scan_setting">Below, you can configure the conditions that you need to scan the device, which can be empty</string>
+
+    <string name="setting_name">Enter a broadcast name for Bluetooth devices, separated by English commas</string>
+
+    <string name="setting_mac">Enter Bluetooth device MAC</string>
+
+    <string name="setting_uuid">Enter Bluetooth device UUID, separated by commas in English</string>
+
+    <string name="input_hex">Please enter the HEX format command</string>
+
+    <!--<string name="connect">Connect</string>-->
+
+    <string name="connected">Connected</string>
+
+    <!--<string name="disconnect">Disconnect</string>-->
+
+    <string name="enter">Enter</string>
+
+</resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl_All"
+    android:background="#D0D0D0"
+    tools:context="com.iprt.xzc_pc.printerdemo.LableEditActivity">
+    <LinearLayout
+        android:id="@+id/rl_Bottom"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Spinner
+                android:layout_weight="1"
+                android:id="@+id/spPaperMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></Spinner>
+            <Spinner
+                android:layout_weight="1"
+                android:id="@+id/spPaperType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></Spinner>
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btClear"
+                android:text="清空"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btText"
+                android:text="文字"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btBarCode"
+                android:text="二维码"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btImage"
+                android:text="图片"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btLablePrint"
+                android:text="打印"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rl_left"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="280dp"></RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_father"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/rl_left"
+        android:layout_marginLeft="10dp"
+        android:layout_width="450dp"
+        android:layout_height="280dp"
+        android:background="#fff"
+         >
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">金华垃圾</string>
+    <string name="help">1.输入打印机名称-->打开(只能打开已配对的设备)\n
+    					2.菜单-->打开连接(可打开已配对设备与新设备)</string>
+
+    <string name="input_printer_name">打印机名称</string>
+
+    <!--BTPrinterDemo-->
+    <string name="not_connected">请先连接蓝牙打印机（菜单->连接）</string>
+    <string name="bt_not_enabled">蓝牙没有启动</string>
+    <string name="bt_has_on">蓝牙已打开</string>
+    <string name="bt_has_off">蓝牙已关闭</string>
+
+    <string name="bt_print_success">打印成功</string>
+    <string name="bt_print_failed">打印失败</string>
+
+    <string name="bt_connecting">打印机正在连接..</string>
+    <string name="bt_connect_success">打印机连接成功..</string>
+    <string name="bt_connect_failed">打印机连接失败</string>
+    <string name="bt_connect_closed">打印机连接已关闭</string>
+
+    <string name="title_connecting">正在连接...</string>
+    <string name="title_connected">已连接</string>
+    <string name="title_not_connected">未连接</string>
+    <string name="tip">提示 </string>
+    <string name="tip_content">此机器不支持标签打印，是否继续？</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+
+
+
+
+    <string name="notifyTitle">提示</string>
+
+    <string name="gpsNotifyMsg">当前手机扫描蓝牙需要打开定位功能。</string>
+
+    <string name="setting">前往设置</string>
+
+    <string name="cancel">取消</string>
+
+    <string name="start_scan">开始扫描</string>
+
+    <string name="stop_scan">停止扫描</string>
+
+    <string name="expand_search_settings">展开搜索设置</string>
+
+    <string name="retrieve_search_settings">收起搜索设置</string>
+
+    <string name="connect_fail">连接失败</string>
+
+    <string name="active_disconnected">断开了</string>
+
+    <string name="disconnected">连接断开</string>
+
+    <string name="please_open_blue">请先打开蓝牙</string>
+
+    <string name="select_operation_type">选择操作类型</string>
+
+    <string name="characteristic">特性</string>
+
+    <string name="data_changed">的数据变化：</string>
+
+    <string name="read">读</string>
+
+    <string name="write">写</string>
+
+    <string name="open_notification">打开通知</string>
+
+    <string name="close_notification">关闭通知</string>
+
+    <string name="service_list">服务列表</string>
+
+    <string name="characteristic_list">特征列表</string>
+
+    <string name="console">操作控制台</string>
+
+    <string name="name">设备广播名：</string>
+
+    <string name="mac">MAC:</string>
+
+    <string name="service">服务</string>
+
+    <string name="type">服务类型(主服务)</string>
+
+    <string name="scan_setting">在下面你可以配置需要扫描的设备的条件，可以为空</string>
+
+    <string name="setting_name">输入蓝牙设备广播名，多个之间以英文逗号隔开</string>
+
+    <string name="setting_mac">输入蓝牙设备mac</string>
+
+    <string name="setting_uuid">输入蓝牙设备UUID，多个之间以英文逗号隔开</string>
+
+    <string name="input_hex">请输入HEX格式指令</string>
+
+    <!--<string name="connect">连接</string>-->
+
+    <string name="connected">已连接</string>
+
+    <!--<string name="disconnect">断开连接</string>-->
+
+    <string name="enter">进入操作</string>
+
+
+
+    <!--  DeviceListActivity -->
+    <string name="scanning">扫描设备中...</string>
+    <string name="select_device">请选择要连接的设备</string>
+    <string name="none_paired">没有匹配的设备</string>
+    <string name="has_paired">已配对</string>
+    <string name="not_paired">未配对</string>
+    <string name="rePaire_connect">重新配对并连接</string>
+    <string name="unpair">取消配对</string>
+    <string name="paire_connect">配对并连接</string>
+    <string name="connect_paired">连接</string>
+    <string name="select_options">选择操作</string>
+
+    <string name="none_found">没有找到设备</string>
+    <string name="no_bounded_device">未找到名称以 %s 开头的设备</string>
+
+    <string name="title_paired_devices">已配对的设备</string>
+    <string name="title_other_devices">其它可用设备</string>
+    <string name="button_scan">扫描新设备</string>
+    <string name="button_back">返回</string>
+
+    <!-- Options Menu -->
+    <string name="connect">打开连接</string>
+    <string name="disconnect">断开连接</string>
+
+    <!-- main.xml -->
+    <string name="connect_type">连接方式:</string>
+    <string name="connect_bluetooth">蓝牙</string>
+    <string name="connect_usb">USB</string>
+    <string name="connect_wifi">WIFI</string>
+    <string name="edit_hint">打印机名称(如T9)</string>
+    <string name="print_text">打印文本</string>
+    <string name="print_table">打印表格</string>
+    <string name="print_web">打印网页</string>
+    <string name="query_printer_status">查询状态</string>
+
+    <string name="print_image">打印图片</string>
+    <string name="print_custom_image">打印自定义图形</string>
+    <string name="print_note">打印小票</string>
+    <string name="print_lable">打印标签</string>
+    <string name="print_pdf">打印pdf</string>
+    <string name="print_title">打印标题</string>
+    <string name="bar_code_hint">输入条码，例如:No.123456</string>
+    <string name="print_bar_code">打印条码</string>
+
+    <string name="open_file">打开文件</string>
+    <string name="save_file">保存文件</string>
+    <string name="save_as_file">另存文件</string>
+    <string name="print_file">打印文本</string>
+
+    <string name="save_ok">确定</string>
+    <string name="save_cancel">取消</string>
+
+    <string name="toast_input_name">请输入文件名!</string>
+    <string name="toast_save_null">请勿保存空文件!</string>
+    <string name="toast_print_null">请勿打印空文件!</string>
+    <string name="toast_save_success">保存成功!</string>
+
+    <string name="input_file_name">请输入文件名称:</string>
+    <string name="back_to_root">返回根目录...</string>
+    <string name="back_to_pre">返回上一级...</string>
+    <string name="file_manager">文件管理</string>
+    <string name="editText_print">文本打印</string>
+
+    <string name="example_text">
+    	iPRT T801|为品质与美而生，没有过多的修饰，线条流畅，经典的镜面上盖，绿色的案件和发光带在
+        造型上更具美感，将商业、时尚完美融入一身，让用户感受到打印机也可以如此时尚，为审美疲劳的
+        微市场增添了些许惊喜和期待。
+    </string>
+
+    <string name="company_name">打印机公司</string>
+    <string name="text_point24">这是一行混合格式文本，24号字体</string>
+    <string name="text_strike_point18">这是一行删除线文本，18号字体</string>
+    <string name="text_underLine_point18">这是一行下划线文本，18号字体</string>
+    <string name="text_common_point18">这是一行普通文本，18号字体</string>
+
+    <string name="shop_company_title">宁波月湖店</string>
+    <string name="shop_num">门店号：</string>
+    <string name="shop_note_num">单据号：</string>
+    <string name="shop_cashier_num">收银员：</string>
+    <string name="shop_receipt_date">单据日期：</string>
+    <string name="shop_print_time">打印时间：</string>
+
+    <string name="shop_goods_number">数量：</string>
+    <string name="shop_goods_total_price">总计：</string>
+    <string name="shop_payment">付款：</string>
+    <string name="shop_change">找零：</string>
+    <string name="shop_company_name">公司名称：江苏一五一十家居用品有限公司</string>
+    <string name="shop_company_site">公司网址：</string>
+    <string name="shop_company_address">地址：江苏省宁波市东昌路12号</string>
+    <string name="shop_company_tel">电话：</string>
+    <string name="shop_Service_Line">服务专线：</string>
+    <string name="shop_thanks">谢谢惠顾,欢迎再次光临！</string>
+    <string name="shop_demo">Demo 版本！</string>
+
+    <string name="note_title">品名;数量;单价;金额</string>
+    <string name="coffee">咖啡</string>
+    <string name="tableware">消毒餐具</string>
+    <string name="peanuts">油炸花生米</string>
+    <string name="cucumber">蒜泥黄瓜</string>
+
+    <string name="frog">干锅田鸡</string>
+    <string name="rice">米饭</string>
+
+    <string name="company_sub_title">专注，可靠，中国特种打印机优秀品牌</string>
+    <!--<string name="company_logo_all_title">有logo,主标题和副标题:</string>
+    <string name="company_logo_sub_title">有logo和副标题:</string>
+    <string name="company_logo_title">有logo和主标题:</string>
+    <string name="company_all_title">有主标题和副标题:</string> -->
+
+    <string name="bags">保鲜袋</string>
+    <string name="umbrella">雨伞</string>
+    <string name="hook">铁丝挂钩</string>
+
+    <string name="choose_barcode_type">条码类型:</string>
+    <string name="choose_paper_width">纸张宽度:</string>
+    <string name="choose_printer_type">打印机类型:</string>
+    <string name="choose_Encoding">编码方式:</string>
+
+    <string name="printer_type_remin">热敏</string>
+    <string name="printer_type_styuls">针打</string>
+    <string name="not_find_bluetooth">找不到蓝牙</string>
+    <string name="all">全部</string>
+    <!-- PdfPrintActivity -->
+    <string name="default_pdf">默认PDF</string>
+    <string name="getpdf">获取PDF</string>
+    <string name="previous_page">上一页</string>
+    <string name="next_page">下一页</string>
+    <string name="print_this_page">打印当前页</string>
+    <string name="print_all_pdf_document">打印整个pdf文件</string>
+    <string name="default_char">请输入条码内容</string>
+    <string name="states_ok">OK</string>
+    <string name="states_lack_of_paper">打印机缺纸</string>
+    <string name="states_uncap">打印机开盖</string>
+    <string name="states_lack_of_paper_and_cover">打印机缺纸和开盖</string>
+    <string name="states_cutter_error">切刀错误</string>
+    <string name="states_overtemperature">打印机过温</string>
+    <string name="states_cutter_error_and_over_temperature">切刀错误和过温</string>
+    <string name="states_paper_shortage_and_cutter_error">缺纸和切刀错误</string>
+    <string name="states_paper_shortage_and_over_temperature">缺纸和过温</string>
+    <string name="states_paper_shortage_and_cutter_error_and_over_temperature">缺纸和切刀错误和过温</string>
+    <string name="states_error_in_opening_cover_and_cutting_knife">开盖和切刀错误</string>
+    <string name="states_open_cover_and_over_temperature">开盖和过温</string>
+    <string name="states_uncover_and_cutter_errors_and_over_temperature">开盖和切刀错误和过温</string>
+    <string name="states_paper_shortage_and_Opening_and_cutter_error">缺纸和开盖和切刀错误</string>
+    <string name="states_paper_shortage_opening_cover_and_over_temperature">缺纸和开盖和过温</string>
+    <string name="states_paper_shortage_open_cover_and_excessive_temperature_and_Cutter_Error">缺纸和开盖和过温和切刀错误</string>
+    <string name="states_other_error">其他错误</string>
+    <string name="states_communication_anomaly">通讯异常</string>
+
+    <!--utils-->
+    <string name="welcome">欢迎您的光顾</string>
+    <string name="shopping_name">大润发购物中心</string>
+    <string name="text_one">店名：百盛  机号：0306</string>
+    <string name="text_two">收银员：12015162</string>
+    <string name="text_three">商品编码：139101347647619413254</string>
+    <string name="text_four">女鞋  码号：340</string>
+    <string name="text_five">型号：T2101-11L</string>
+    <string name="text_six">颜色：米白</string>
+    <string name="text_seven">交易编号: 02010212352475412</string>
+
+    <string name="text_eight">交易识别码：21542012584654234</string>
+    <string name="text_nine">数量：1</string>
+    <string name="text_ten">合计金额：240.00</string>
+    <string name="text_eleven">实收金额：240.00</string>
+    <string name="text_twelve">2016-3-4     16：32</string>
+    <string name="text_thirteen">退换货时凭此发票</string>
+    <string name="text_fourteen">顾客联办理</string>
+    <string name="text_fiveteen">谢谢惠顾，欢迎再次光临!</string>
+    <string name="line">----------------</string>
+    <string name="longline">------------------------------</string>
+    <string name="printCanvas">打印画布效果展示:</string>
+    <string name="print_128code">打印 CODE128 码效果演示：</string>
+    <string name="print_code39">打印 CODE39 码效果演示：</string>
+    <string name="print_codebar">打印 CODEBAR 码效果演示：</string>
+    <string name="print_itf">打印 ITF 码效果演示：</string>
+    <string name="print_code93">打印 CODE93 码效果演示：</string>
+    <string name="print_upc_a">打印 UPC_A 码效果演示:</string>
+    <string name="print_jan13">打印 JAN13 码效果演示：</string>
+    <string name="print_jan8">打印 JAN8 码效果演示：</string>
+    <string name="print_qrcode">打印 QRCODE 码效果展示：</string>
+    <string name="print_pdf417">打印 PDF417 码效果展示：</string>
+    <string name="print_datamatrix">打印 DATAMATRIX 码效果展示：</string>
+    <string name="print_tickets_lines1">XX市公安局交通巡逻警察支队</string>
+    <string name="print_tickets_lines2">公安交通管理简易程序处罚决定书</string>
+    <string name="print_tickets_lines3">决定书编号:4101051700000012</string>
+    <string name="print_tickets_lines4">被处罚人: 张三</string>
+    <string name="print_tickets_lines5">机动车驾驶证档案编号: 410100350774</string>
+    <string name="print_tickets_lines6">机动车驾驶证/居民身份证号码: 41012217912182710</string>
+    <string name="print_tickets_lines7">准驾车型: C1E</string>
+    <string name="print_tickets_lines8">联系方式: 12345678911</string>
+    <string name="print_tickets_lines9">车辆牌号: 豫 A66E88</string>
+    <string name="print_tickets_lines10">车辆类型: 小型轿车</string>
+    <string name="print_tickets_lines11">发证机关: 豫A</string>
+    <string name="print_tickets_lines12">    被处罚人: 于2012年05月25日16时39分XX省XX市解放路实施机动车不安交" +
+                "通信号灯规定同行的违法行为(代码13022)。违反了【违法规定】。根据:【中华人" +
+                "民共和国道路安全法】之规定，决定处以200元罚款。</string>
+    <string name="print_tickets_lines13">    请持本决定书在十五日内到本市是去工商银行缴纳罚款。逾期不缴纳的，每日按" +
+                "罚款数额的百分之三加处罚款"</string>
+    <string name="print_tickets_lines14">    如不服本决定，可以在收到本决定书之日起六十日内向xx市公安局或xx市人民政" +
+                "府申请行政复议；或者依照《中华人民共和国行政诉讼法》在三个月内向xx市二七区" +
+                "人民法院提起行政诉讼。处罚地点:xx省xx市解放路</string>
+    <string name="print_tickets_lines15">交通警察</string>
+    <string name="print_tickets_lines16">2012年05月25日</string>
+    <string name="print_tickets_lines17">被处罚人签名:________</string>
+    <string name="print_tickets_lines18">年    月    日</string>
+    <string name="print_tickets_lines19">备注:________</string>
+    <string name="print_tickets_lines20">根据《机动车驾驶证申领和使用规定》记3分</string>
+    <string name="print_tickets_lines21">第一联:送达被处罚人</string>
+
+    <!--lable-->
+    <string name="lable_one">测试南京分拨</string>
+    <string name="lable_two">测试南京秦淮</string>
+    <string name="lable_three">[派送]江苏省南京市青浦区</string>
+    <string name="lable_four">测试杭州城南</string>
+    <string name="lable_five">测试杭州分拨中心</string>
+    <string name="lable_six">目</string>
+    <string name="lable_seven">地</string>
+    <string name="lable_eight">信</string>
+    <string name="lable_nine">息</string>
+    <string name="lable_ten">货</string>
+    <string name="lable_eleven">物</string>
+    <string name="lable_twelve">信</string>
+    <string name="lable_thirteen">息</string>
+    <string name="lable_fourteen">始</string>
+    <string name="lable_fifteen">发</string>
+
+    <string name="tv_current_wifi">当前连接到wifi:</string>
+    <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
+    <string name="switch_wifi">选择WiFi</string>
+
+    <string name="Permissions_location">已开启定位权限</string>
+    <!--LableEdityActivity-->
+    <string name="title_name_1">title_name_1</string>
+    <string name="title_name_2">title_name_2</string>
+    <string name="title_name_3">title_name_3</string>
+    <string name="title_name_4">title_name_4</string>
+    <string name="title_name_5">title_name_5</string>
+    <string name="title_name_6">title_name_6</string>
+    <string name="title_name_7">title_name_7</string>
+    <string name="title_name_8">title_name_8</string>
+    <string name="title_name_9">title_name_9</string>
+    <string name="title_name_10">title_name_10</string>
+    <string name="title_msg">绿色使命</string>
+
+</resources>

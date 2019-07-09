@@ -1,0 +1,61 @@
+{
+  "opts": [
+    {
+      "barcodeType": 0,
+      "beginX": 0,
+      "beginY": 0,
+      "content": "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM={'k1':'021WA','k2':'021AK','k3':'002','k4':'T6','k5':'033123456789'}",
+      "endX": 0,
+      "endY": 0,
+      "fontType": 0,
+      "height": 0,
+      "isBold": false,
+      "level": 2,
+      "optCode": 16,
+      "qrVersion": 2,
+      "ratio": 0,
+      "unitHeight": 5,
+      "width": 0,
+      "x": 240,
+      "y": 570
+    },
+    {
+      "barcodeType": 0,
+      "beginX": 436,
+      "beginY": 364,
+      "content": "",
+      "endX": 572,
+      "endY": 444,
+      "fontType": 0,
+      "height": 0,
+      "isBold": false,
+      "level": 0,
+      "optCode": 14,
+      "qrVersion": 0,
+      "ratio": 0,
+      "unitHeight": 0,
+      "width": 1,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "barcodeType": 0,
+      "beginX": 0,
+      "beginY": 0,
+      "content": "COD",
+      "endX": 0,
+      "endY": 0,
+      "fontType": 6,
+      "height": 0,
+      "isBold": false,
+      "level": 0,
+      "optCode": 12,
+      "qrVersion": 0,
+      "ratio": 0,
+      "unitHeight": 0,
+      "width": 0,
+      "x": 454,
+      "y": 372
+    }
+  ]
+}
