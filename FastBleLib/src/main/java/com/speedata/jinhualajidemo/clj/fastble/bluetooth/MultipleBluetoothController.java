@@ -112,6 +112,8 @@ public class MultipleBluetoothController {
         return bleBluetoothList;
     }
 
+
+
     public synchronized List<BleDevice> getDeviceList() {
         refreshConnectedDevice();
         List<BleDevice> deviceList = new ArrayList<>();

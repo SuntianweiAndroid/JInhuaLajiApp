@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green"
+    android:background="@mipmap/background_login"
     android:orientation="vertical"
-    tools:context=".activity.LoginActivity">
+    tools:context=".activity.MenuActivity">
 
     <View
         android:layout_width="match_parent"
@@ -30,8 +30,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="账号:"
-                android:textColor="@color/white" />
+                android:text="@string/login_name"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/edt_name"
@@ -39,7 +40,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00000000"
-                android:text="13245896325" />
+                android:text=""
+                android:textColorHint="@color/white"
+                android:hint="请输入手机号"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <View
@@ -61,10 +66,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_weight="3"
-                android:text="密码:"
-                android:textColor="@color/white" />
+                android:text="@string/login_pwd"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/edt_pwd"
@@ -72,7 +77,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00000000"
-                android:text="admin" />
+                android:hint="请输入密码"
+                android:textColorHint="@color/white"
+                android:text="c4ca4238a0b923820dcc509a6f75849b"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <View
@@ -87,10 +96,13 @@
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
             android:layout_marginRight="20dp"
-            android:text="登录" />
+            android:background="@drawable/btn_select_login"
+            android:gravity="center"
+            android:text="@string/btn_login"
+            android:textColor="#0FAF43"
+            android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>

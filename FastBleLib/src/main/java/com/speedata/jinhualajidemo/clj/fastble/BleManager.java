@@ -137,6 +137,9 @@ public class BleManager {
     public void initScanRule(BleScanRuleConfig config) {
         this.bleScanRuleConfig = config;
     }
+    public void initScanRule2(BleScanRuleConfig config) {
+        this.bleScanRuleConfig = config;
+    }
 
     /**
      * Get the maximum number of connections

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
     <string name="app_name">Jinhua</string>
+    <string name="login_name">账号:</string>
+    <string name="login_pwd">密码:</string>
+    <string name="btn_login">登录</string>
+    <string name="login_show_msg">请输入用户名和密码!</string>
+
+
+
+
     <string name="help">1.input printer name--&amp;gt;open(only can open device which has bounded.)\n
     					2.menu--&amp;gt;open connection(can open device which has bounded and new device)</string>
     <string name="input_printer_name">Input printer name</string>

@@ -107,14 +107,14 @@ public class ClsUtils {
             int i = 0;
             for (; i < hideMethod.length; i++)
             {
-                //Log.e("method name", hideMethod.getName() + ";and the i is:"
+                //Log.e("method name", hideMethod.getManageloginName() + ";and the i is:"
                 //      + i);
             }
             // 取得所有常量
             Field[] allFields = clsShow.getFields();
             for (i = 0; i < allFields.length; i++)
             {
-                //Log.e("Field name", allFields.getName());
+                //Log.e("Field name", allFields.getManageloginName());
             }
         }
         catch (SecurityException e)

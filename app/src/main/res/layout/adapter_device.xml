@@ -58,13 +58,16 @@
                 android:layout_width="18dp"
                 android:layout_height="18dp"
                 android:layout_marginLeft="5dp"
-                android:src="@mipmap/ic_rssi" />
+                android:src="@mipmap/ic_rssi"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_connect"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_margin="5dp"
+                android:background="@mipmap/button_bg1"
+                android:gravity="center"
                 android:text="@string/connect"
                 android:textSize="12sp" />
 
@@ -89,9 +92,10 @@
                 android:id="@+id/btn_disconnect"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="@string/disconnect"
-                android:textSize="12sp" />
+                android:layout_margin="5dp"
+                android:background="@mipmap/button_bg1"
+                android:gravity="center"
+                android:text="@string/disconnect" />
 
             <Button
                 android:id="@+id/btn_detail"

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Build;
@@ -14,6 +15,7 @@ import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -22,7 +24,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.speedata.jinhualajidemo.MyApplication;
 import com.speedata.jinhualajidemo.R;
+import com.speedata.jinhualajidemo.view.TitleBarView;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -45,6 +49,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         initView();
+        setMyAppTitle();
         WindowManager wm = (WindowManager) (getSystemService(Context.WINDOW_SERVICE));
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
@@ -100,6 +105,27 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 //        });
     }
 
+    private void setMyAppTitle() {
+        TitleBarView titleBarView = (TitleBarView) this.findViewById(R.id.title_layout);
+        titleBarView.initViewsVisible(true, true, false, true);
+
+        titleBarView.setAppTitle("拍照");
+//        titleBarView.setRightTitle("提交");
+        titleBarView.setOnLeftButtonClickListener(new TitleBarView.OnLeftButtonClickListener() {
+            @Override
+            public void onLeftButtonClick(View v) {
+                finish();
+            }
+        });
+
+        titleBarView.setOnRightButtonClickListener(new TitleBarView.OnRightButtonClickListener() {
+            @Override
+            public void OnRightButtonClick(View v) {
+                //TODO
+            }
+        });
+    }
+
     public static int getDisplayRotation(Activity activity) {
         int rotation = activity.getWindowManager().getDefaultDisplay()
                 .getRotation();
@@ -139,6 +165,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         mTackPicture.setOnClickListener(this);
         mIamgeRe = (ImageView) findViewById(R.id.iamge_re);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        if(requestCode==0&&resultCode==RESULT_OK){
@@ -149,16 +176,50 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 //            Bitmap bitmap = (Bitmap) extras.get("data");
 //            mIamgeRe.setImageBitmap(bitmap);
 //        }
-        if(requestCode== 0 &&resultCode==RESULT_OK){
+        if (requestCode == 0 && resultCode == RESULT_OK) {
             try {
                 /*如果拍照成功，将Uri用BitmapFactory的decodeStream方法转为Bitmap*/
-                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(mImageUri));
-                mIamgeRe.setImageBitmap(bitmap);//显示到ImageView上
+//                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(mImageUri));
+                Bitmap bitmap = getBitmapFormUri(mImageUri);
+//                bitmap = createFitBitmap(mIamgeRe, bitmap);
+//                mIamgeRe.setImageDrawable(new BitmapDrawable(this.getResources(), bitmap));
+//                mIamgeRe.setImageBitmap(bitmap);//显示到ImageView上
+                MyApplication.getLajiBeen().setBitmap(bitmap);
+                Intent intent = new Intent(this, PutRecordActivity.class);
+                startActivity(intent);
             } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
+    private static Bitmap createScaleBitmap(Bitmap src, int dstWidth, int dstHeight, int inSampleSize) {
+        // 如果是放大图片，filter决定是否平滑，如果是缩小图片，filter无影响，我们这里是缩小图片，所以直接设置为false
+        Bitmap dst = Bitmap.createScaledBitmap(src, dstWidth, dstHeight, false);
+        if (src != dst) { // 如果没有缩放，那么不回收
+            src.recycle(); // 释放Bitmap的native像素数组
+        }
+        return dst;
+    }
+
+    private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // 源图片的高度和宽度
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+        if (height > reqHeight || width > reqWidth) {
+            // 计算出实际宽高和目标宽高的比率
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+            while ((halfHeight / inSampleSize) > reqHeight && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+        return inSampleSize;
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -199,34 +260,37 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private Uri mImageUri;
-    private void takePhoto(){
+
+    private void takePhoto() {
         Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);//打开相机的Intent
-        if(takePhotoIntent.resolveActivity(getPackageManager())!=null){//这句作用是如果没有相机则该应用不会闪退，要是不加这句则当系统没有相机应用的时候该应用会闪退
+        if (takePhotoIntent.resolveActivity(getPackageManager()) != null) {//这句作用是如果没有相机则该应用不会闪退，要是不加这句则当系统没有相机应用的时候该应用会闪退
             File imageFile = createImageFile();//创建用来保存照片的文件
-            if(imageFile!=null){
-                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N){
+            if (imageFile != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     /*7.0以上要通过FileProvider将File转化为Uri*/
-                    mImageUri = FileProvider.getUriForFile(this,"com.speedata.jinhualajidemo.provider",imageFile);
-                }else {
+                    mImageUri = FileProvider.getUriForFile(this, "com.speedata.jinhualajidemo.provider", imageFile);
+                } else {
                     /*7.0以下则直接使用Uri的fromFile方法将File转化为Uri*/
                     mImageUri = Uri.fromFile(imageFile);
                 }
-                takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT,mImageUri);//将用于输出的文件Uri传递给相机
+                takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);//将用于输出的文件Uri传递给相机
                 startActivityForResult(takePhotoIntent, 0);//打开相机
             }
         }
     }
+
     /**
      * 创建用来存储图片的文件，以时间来命名就不会产生命名冲突
+     *
      * @return 创建的图片文件
      */
     private File createImageFile() {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_"+timeStamp+"_";
+        String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File imageFile = null;
         try {
-            imageFile = File.createTempFile(imageFileName,".jpg",storageDir);
+            imageFile = File.createTempFile(imageFileName, ".jpg", storageDir);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -281,11 +345,14 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             //第一个参数 ：图片格式 ，第二个参数： 图片质量，100为最高，0为最差  ，第三个参数：保存压缩后的数据的流
             image.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options，把压缩后的数据存放到baos中
             options -= 10;//每次都减少10
-            if (options<=0)
+            if (options <= 0)
                 break;
         }
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
         Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
         return bitmap;
     }
+
+
+
 }

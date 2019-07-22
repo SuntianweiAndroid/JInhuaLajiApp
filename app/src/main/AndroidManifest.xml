@@ -10,8 +10,15 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+
     <uses-permission android:name="android.hardware.usb.host" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -24,6 +31,19 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.NFC" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -34,48 +54,44 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.CheckBConnectActivity"
+            android:theme="@style/AppThemetest"></activity>
+        <activity
+            android:name=".activity.ResultActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/TranslucentTheme"/>
+        <activity
+            android:name=".activity.PutRecordActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/TranslucentTheme"/>
+        <activity
+            android:name=".activity.CreditScoreActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/TranslucentTheme"/>
+        <activity
+            android:name=".activity.LaClassifyActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/TranslucentTheme"/>
+        <activity
+            android:name=".activity.RegisterResActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/TranslucentTheme"/>
+        <activity
             android:name=".activity.CameraActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".activity.MenuActivity" />
+            android:launchMode="singleTask"
+            android:theme="@style/TranslucentTheme"/>
         <activity
-            android:name=".activity.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".printerdemo.PrinterSDKDemo_Plus_USB" />
-        <activity
-            android:name=".activity.MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:name=".activity.MenuActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/TranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".clj.blesample.MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".printerdemo.PrinterFileManager" />
-        <activity android:name=".printerdemo.UsbPrinterTextEdit" />
-        <activity android:name=".printerdemo.BluetoothDeviceListActivity" />
-        <activity android:name=".printerdemo.DeviceListActivity" />
-        <activity android:name=".printerdemo.BluetoothPrinterTextEdit" />
-        <activity android:name=".printerdemo.PdfPrintActivity" />
-        <activity android:name=".printerdemo.LableEditActivity" />
-        <activity
-            android:name=".printerdemo.MipcaActivityCapture"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".printerdemo.LableTextEditActivity" />
-        <activity android:name=".printerdemo.LableBarCodeEditActivity" />
-        <activity android:name=".printerdemo.LablePictureEditActivity" />
-        <activity
-            android:name=".printerdemo.IpEditActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".printerdemo.WifiPrinterTextEdit" />
-        <activity android:name=".printerdemo.WebviewActivity" />
-        <activity
-            android:name=".clj.blesample.operation.OperationActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activity.MainActivity"
+            android:theme="@style/TranslucentTheme"></activity>
 
         <receiver android:name=".utils.PairingRequest">
             <intent-filter>
@@ -92,17 +108,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
-        <!--<provider-->
-            <!--android:name="android.support.v4.content.FileProvider"-->
-            <!--android:authorities="fileprovider"-->
-            <!--android:exported="false"-->
-            <!--android:grantUriPermissions="true">-->
-            <!--<meta-data-->
-                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
-                <!--android:resource="@xml/file_paths" />-->
-        <!--</provider>-->
-
     </application>
 
 </manifest>

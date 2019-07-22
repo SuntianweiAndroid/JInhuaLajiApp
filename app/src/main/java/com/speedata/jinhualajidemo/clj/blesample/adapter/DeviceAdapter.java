@@ -1,15 +1,19 @@
 package com.speedata.jinhualajidemo.clj.blesample.adapter;
 
 
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.speedata.jinhualajidemo.MyApplication;
 import com.speedata.jinhualajidemo.clj.fastble.BleManager;
 import com.speedata.jinhualajidemo.clj.fastble.data.BleDevice;
 import com.speedata.jinhualajidemo.R;
@@ -21,10 +25,13 @@ public class DeviceAdapter extends BaseAdapter {
 
     private Context context;
     private List<BleDevice> bleDeviceList;
+    private boolean isBle = false;
+    private boolean isBound = false;
 
-    public DeviceAdapter(Context context) {
+    public DeviceAdapter(Context context, boolean isBle) {
         this.context = context;
         bleDeviceList = new ArrayList<>();
+        this.isBle = isBle;
     }
 
     public void addDevice(BleDevice bleDevice) {
@@ -103,13 +110,31 @@ public class DeviceAdapter extends BaseAdapter {
 
         final BleDevice bleDevice = getItem(position);
         if (bleDevice != null) {
-            boolean isConnected = BleManager.getInstance().isConnected(bleDevice);
+            boolean isConnected = false;
+            if (isBle) {
+                isConnected = BleManager.getInstance().isConnected(bleDevice);
+            } else {
+                Log.i("swwwwww", "getView: " + bleDevice.getName());
+                if (bleDevice.getDevice().getBondState() == BluetoothDevice.BOND_BONDED) {
+                    isBound = true;
+                    if (MyApplication.getLajiBeen().getbPrinter() != null) {
+                        if (MyApplication.getLajiBeen().getbPrinter().isConnected()) {
+                            isConnected = true;
+                        } else {
+                            isConnected = false;
+                        }
+                    }
+                } else {
+                    isBound = false;
+                    isConnected = false;
+                }
+            }
             String name = bleDevice.getName();
             String mac = bleDevice.getMac();
             int rssi = bleDevice.getRssi();
             holder.txt_name.setText(name);
             holder.txt_mac.setText(mac);
-            holder.txt_rssi.setText(String.valueOf(rssi));
+//            holder.txt_rssi.setText(String.valueOf(rssi));
             if (isConnected) {
                 holder.img_blue.setImageResource(R.mipmap.ic_blue_connected);
                 holder.txt_name.setTextColor(0xFF1DE9B6);
@@ -120,6 +145,15 @@ public class DeviceAdapter extends BaseAdapter {
                 holder.img_blue.setImageResource(R.mipmap.ic_blue_remote);
                 holder.txt_name.setTextColor(0xFF000000);
                 holder.txt_mac.setTextColor(0xFF000000);
+                if (isBle) {
+                    holder.txt_rssi.setText("未连接");
+                } else {
+                    if (isBound) {
+                        holder.txt_rssi.setText("已配对");
+                    } else {
+                        holder.txt_rssi.setText("未配对");
+                    }
+                }
                 holder.layout_idle.setVisibility(View.VISIBLE);
                 holder.layout_connected.setVisibility(View.GONE);
             }

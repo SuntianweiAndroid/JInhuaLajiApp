@@ -10,6 +10,7 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.speedata.jinhualajidemo.clj.fastble.callback.BleScanPresenterImp;
 import com.speedata.jinhualajidemo.clj.fastble.data.BleDevice;
@@ -69,6 +70,7 @@ public abstract class BleScanPresenter implements BluetoothAdapter.LeScanCallbac
                 onLeScan(bleDevice);
             }
         });
+        Log.i("swwwwwww", "handleResult: " + bleDevice.getName());
         checkDevice(bleDevice);
     }
 
@@ -121,11 +123,12 @@ public abstract class BleScanPresenter implements BluetoothAdapter.LeScanCallbac
             if (!mDeviceMac.equalsIgnoreCase(bleDevice.getMac()))
                 return;
         }
-
+        Log.i("swwwwwww", "handleResult: " + bleDevice.getName());
         if (mDeviceNames != null && mDeviceNames.length > 0) {
             AtomicBoolean equal = new AtomicBoolean(false);
             for (String name : mDeviceNames) {
                 String remoteName = bleDevice.getName();
+
                 if (remoteName == null)
                     remoteName = "";
                 if (mFuzzy ? remoteName.contains(name) : remoteName.equals(name)) {

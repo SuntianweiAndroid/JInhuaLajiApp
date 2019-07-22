@@ -24,27 +24,36 @@ public class MySharedPreferences {
     }
 
     public boolean getLogin(String key, boolean login) {
-      return   preferences.getBoolean(key, login);
+        return preferences.getBoolean(key, login);
     }
 
 
-    public void setName(String key, String name) {
+    public void setManageloginName(String key, String name) {
         editor.putString(key, name);
         editor.commit();//提交数据
     }
 
-    public String getName(String key, String pwd) {
-      return   preferences.getString(key, pwd);
+    public String getManageloginName(String key, String pwd) {
+        return preferences.getString(key, pwd);
+    }
+
+    public void setManageName(String key, String name) {
+        editor.putString(key, name);
+        editor.commit();//提交数据
+    }
+
+    public String getManageName(String key, String pwd) {
+        return preferences.getString(key, pwd);
     }
 
 
-    public void setPwd(String key, String login) {
+    public void setManagePwd(String key, String login) {
         editor.putString(key, login);
         editor.commit();//提交数据
     }
 
-    public String getPwd(String key, String pwd) {
-       return preferences.getString(key, pwd);
+    public String getManagePwd(String key, String pwd) {
+        return preferences.getString(key, pwd);
     }
 
     public String[] getSharedPreference(String key) {

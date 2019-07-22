@@ -7,23 +7,10 @@
     android:orientation="vertical"
     tools:context=".activity.CameraActivity">
 
-    <LinearLayout
+    <com.speedata.jinhualajidemo.view.TitleBarView
+        android:id="@+id/title_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_launcher" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="拍照" />
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
     <SurfaceView
         android:id="@+id/camer_view"
@@ -41,6 +28,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/black"
         android:layout_weight="2"
         android:gravity="center">
 
@@ -48,6 +36,6 @@
             android:id="@+id/tack_picture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_launcher" />
+            android:background="@mipmap/button_camera" />
     </LinearLayout>
 </LinearLayout>

@@ -23,23 +23,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android_print_sdk.Barcode;
 import com.android_print_sdk.PrinterType;
 import com.android_print_sdk.bluetooth.BluetoothPrinter;
 import com.speedata.jinhualajidemo.MyApplication;
 import com.speedata.jinhualajidemo.R;
-import com.speedata.jinhualajidemo.view.SearchBTDialog;
+import com.speedata.jinhualajidemo.been.CodeBeen;
 import com.speedata.jinhualajidemo.clj.fastble.BleManager;
 import com.speedata.jinhualajidemo.clj.fastble.callback.BleNotifyCallback;
 import com.speedata.jinhualajidemo.clj.fastble.data.BleDevice;
 import com.speedata.jinhualajidemo.clj.fastble.exception.BleException;
 import com.speedata.jinhualajidemo.clj.fastble.scan.BleScanRuleConfig;
-import com.speedata.jinhualajidemo.been.CodeBeen;
-import com.speedata.jinhualajidemo.printerdemo.BluetoothDeviceListActivity;
-import com.speedata.jinhualajidemo.printerdemo.PrinterSDKDemo_Plus_USB;
 import com.speedata.jinhualajidemo.utils.DataConversionUtils;
 import com.speedata.jinhualajidemo.utils.ScanManage;
-import com.speedata.jinhualajidemo.view.SearchTagDialog;
+import com.speedata.jinhualajidemo.view.SearchBTDialog;
+import com.speedata.jinhualajidemo.view.SearchBleWeightDialog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -217,10 +214,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.tv_title:
                 break;
             case R.id.btn_chuyulaji:
-                Intent intent = new Intent(MainActivity.this, com.speedata.jinhualajidemo.clj.blesample.MainActivity.class);
-                startActivity(intent);
                 break;
             case R.id.btn_other:
+                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btn_huishou:
                 break;
@@ -235,14 +232,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.btn_print:
-                intent = new Intent(this, BluetoothDeviceListActivity.class);
-                startActivityForResult(intent, REQUEST_CONNECT_DEVICE);
                 break;
             case R.id.btn_yiban:
                 break;
             case R.id.btn_hao:
-                Intent intent1 = new Intent(this, com.speedata.jinhualajidemo.clj.blesample.MainActivity.class);
-                startActivity(intent1);
                 break;
             case R.id.btn_henhao:
                 SearchBTDialog searchTags = new SearchBTDialog(this);
@@ -251,8 +244,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 searchTags.show();
                 break;
             case R.id.btn_three:
-                intent1 = new Intent(this, PrinterSDKDemo_Plus_USB.class);
-                startActivity(intent1);
                 break;
             case R.id.btn_four:
                 if (bPrinter == null) {
@@ -288,7 +279,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         .setScanTimeOut(10000)              // 扫描超时时间，可选，默认10秒
                         .build();
                 BleManager.getInstance().initScanRule(scanRuleConfig);
-                SearchTagDialog searchTag = new SearchTagDialog(this);
+                SearchBleWeightDialog searchTag = new SearchBleWeightDialog(this);
                 searchTag.setCanceledOnTouchOutside(false);
                 searchTag.setTitle("请搜索蓝牙设备");
                 searchTag.show();
@@ -350,6 +341,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         public void onCharacteristicChanged(byte[] data) {
                             // 打开通知后，设备发过来的数据将在这里出现
                             String weight = new StringBuffer((DataConversionUtils.byteArrayToAscii(DataConversionUtils.cutBytes(data, 1, data.length - 1)))).reverse().toString();
+                            if (weight == null && weight.equals("")) {
+                                return;
+                            }
                             Log.i("shuju", "onCharacteristicChanged: " + (Double.valueOf(weight) + "kg"));
                             mEtWeight.setText("重量:" + Double.valueOf(weight) + "KG");
                         }
@@ -406,7 +400,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             new String[]{
                                     Manifest.permission.ACCESS_COARSE_LOCATION},
                             MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION);
-                }else {
+                } else {
                     Intent requestBluetoothOn = new Intent(
                             BluetoothAdapter.ACTION_REQUEST_ENABLE);
                     // 请求开启 Bluetooth
@@ -425,14 +419,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     BluetoothAdapter mBluetoothAdapter;
     private final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 123;
     private int REQUEST_CODE_BLUETOOTH_ON = 1;
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // requestCode 与请求开启 Bluetooth 传入的 requestCode 相对应
-        if (requestCode == REQUEST_CODE_BLUETOOTH_ON)
-        {
-            switch (resultCode)
-            {
+        if (requestCode == REQUEST_CODE_BLUETOOTH_ON) {
+            switch (resultCode) {
                 // 点击确认按钮
                 case Activity.RESULT_OK: {
                     // TODO 用户选择开启 Bluetooth，Bluetooth 会被开启
@@ -454,7 +446,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    // use device to init Bluetoothprinter.
+    // use device to setHintMsg Bluetoothprinter.
     private void initPrinter(BluetoothDevice device) {
         if (bPrinter != null) {
             if (bPrinter.isConnected()) {
