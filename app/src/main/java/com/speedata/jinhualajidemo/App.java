@@ -1,5 +1,6 @@
 package com.speedata.jinhualajidemo;
 
+import com.android_print_sdk.bluetooth.BluetoothPrinter;
 import com.speedata.jinhualajidemo.been.UserInfao;
 
 public class App {
@@ -24,5 +25,8 @@ public class App {
 
     // 信用积分 Int 是 可以为负值
     public static int score;
-
+    /*
+    藍牙打印机对象
+     */
+    public static BluetoothPrinter bPrinter;
 }

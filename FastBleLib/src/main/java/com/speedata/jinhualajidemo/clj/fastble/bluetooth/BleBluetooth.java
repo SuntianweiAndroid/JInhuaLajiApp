@@ -347,8 +347,9 @@ public class BleBluetooth {
 
                     BleConnectStateParameter para = (BleConnectStateParameter) msg.obj;
                     int status = para.getStatus();
-                    if (bleGattCallback != null)
+                    if (bleGattCallback != null) {
                         bleGattCallback.onConnectSuccess(bleDevice, bluetoothGatt, status);
+                    }
                 }
                 break;
 

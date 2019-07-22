@@ -95,29 +95,24 @@ public class CreditScoreActivity extends AppCompatActivity implements View.OnCli
             default:
                 break;
             case R.id.tx_z5:
-                MyApplication.getLajiBeen().setScore("+5");
                 App.score = 5;
                 startAct(PutRecordActivity.class);
                 break;
             case R.id.tx_z3:
-                MyApplication.getLajiBeen().setScore("+3");
                 App.score = 3;
                 startAct(PutRecordActivity.class);
                 break;
             case R.id.tx_f5:
                 App.score = -5;
-                MyApplication.getLajiBeen().setScore("-5");
                 startAct(PutRecordActivity.class);
                 break;
             case R.id.tx_f3:
-                MyApplication.getLajiBeen().setScore("-3");
                 App.score = -3;
 
                 startAct(PutRecordActivity.class);
                 break;
             case R.id.tx_0:
                 App.score = 0;
-                MyApplication.getLajiBeen().setScore("0");
                 startAct(PutRecordActivity.class);
                 break;
         }

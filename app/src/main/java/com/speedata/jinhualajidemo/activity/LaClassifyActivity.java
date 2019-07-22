@@ -95,22 +95,18 @@ public class LaClassifyActivity extends AppCompatActivity implements View.OnClic
             default:
                 break;
             case R.id.tx_chuyu:
-                MyApplication.getLajiBeen().setLaClassify("c");
                 App.garbageType = 7;
                 startAct(CreditScoreActivity.class);
                 break;
             case R.id.tx_huishou:
-                MyApplication.getLajiBeen().setLaClassify("h");
                 App.garbageType = 3;
                 startAct(CreditScoreActivity.class);
                 break;
             case R.id.tx_youhai:
-                MyApplication.getLajiBeen().setLaClassify("y");
                 App.garbageType = 4;
                 startAct(CreditScoreActivity.class);
                 break;
             case R.id.tx_other:
-                MyApplication.getLajiBeen().setLaClassify("q");
                 App.garbageType = 8;
                 startAct(CreditScoreActivity.class);
                 break;

@@ -4,12 +4,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.EditText;
 
 import com.speedata.jinhualajidemo.R;
 import com.speedata.jinhualajidemo.clj.fastble.BleManager;
 import com.speedata.jinhualajidemo.clj.fastble.data.BleDevice;
-import com.speedata.jinhualajidemo.view.SearchBTDialog;
+import com.speedata.jinhualajidemo.view.SearchBtPrintDialog;
 import com.speedata.jinhualajidemo.view.SearchBleWeightDialog;
 
 import java.util.List;
@@ -41,7 +40,7 @@ public class CheckBConnectActivity extends AppCompatActivity {
                 }
             });
         } else if (bundle.getString("type").contains("ML31_BT")) {
-            SearchBTDialog searchBTDialog = new SearchBTDialog(this, R.style.MyDialogStyle, "ML31_BT");
+            SearchBtPrintDialog searchBTDialog = new SearchBtPrintDialog(this, R.style.MyDialogStyle, "ML31_BT");
             searchBTDialog.setCanceledOnTouchOutside(false);
             searchBTDialog.show();
             searchBTDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {

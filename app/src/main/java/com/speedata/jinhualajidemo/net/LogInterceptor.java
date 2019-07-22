@@ -8,9 +8,7 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 
 /**
- * @author :Reginer in  2017/9/11 17:51.
- *         联系方式:QQ:282921012
- *         功能描述:日志
+ * 功能描述:日志
  */
 public class LogInterceptor implements Interceptor {
     @SuppressWarnings("ConstantConditions")

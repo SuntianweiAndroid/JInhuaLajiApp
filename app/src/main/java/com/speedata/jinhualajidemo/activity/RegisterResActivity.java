@@ -76,9 +76,6 @@ public class RegisterResActivity extends AppCompatActivity implements View.OnCli
         initView();
         setMyAppTitle();
         options = new RequestOptions();
-        Intent intent = getIntent();
-
-
         NetUtils.setNetResultCallback(new NetUtils.NetResultCallback() {
             @Override
             public void encryption(EncryptionBeenRet encryptionBeenRet) {
@@ -87,19 +84,8 @@ public class RegisterResActivity extends AppCompatActivity implements View.OnCli
                         //调用校验用户接口
                         NetUtils.checkUser(encryptionBeenRet.getContent());
                         break;
-                    case App.ERROTCODE_ENCRYPTION:
-                        MyApplication.showToast(RegisterResActivity.this, "加密数据错误");
-                        break;
-                    case App.ERROTCODE_DECRYPTION:
-                        MyApplication.showToast(RegisterResActivity.this, "解密数据错误");
-                        break;
-                    case App.ERROTCODE_PARAM_MISS:
-                        MyApplication.showToast(RegisterResActivity.this, "缺少参数");
-                        break;
-                    case App.ERROTCODE_NOTHING:
-                        MyApplication.showToast(RegisterResActivity.this, "未查询到相关内容");
-                        break;
                     default:
+                        MyApplication.showToast(RegisterResActivity.this, encryptionBeenRet.getMesg());
                         break;
                 }
 
@@ -124,19 +110,9 @@ public class RegisterResActivity extends AppCompatActivity implements View.OnCli
 
                         MyApplication.showToast(RegisterResActivity.this, "成功");
                         break;
-                    case App.ERROTCODE_ENCRYPTION:
-                        MyApplication.showToast(RegisterResActivity.this, "加密数据错误");
-                        break;
-                    case App.ERROTCODE_DECRYPTION:
-                        MyApplication.showToast(RegisterResActivity.this, "解密数据错误");
-                        break;
-                    case App.ERROTCODE_PARAM_MISS:
-                        MyApplication.showToast(RegisterResActivity.this, "缺少参数");
-                        break;
-                    case App.ERROTCODE_NOTHING:
-                        MyApplication.showToast(RegisterResActivity.this, "未查询到相关内容");
-                        break;
+
                     default:
+                        MyApplication.showToast(RegisterResActivity.this, decryptionBeenRet.getMesg());
                         break;
                 }
             }
@@ -154,19 +130,9 @@ public class RegisterResActivity extends AppCompatActivity implements View.OnCli
                         DecryptionBeen decryptionBeen = new DecryptionBeen(MyApplication.key, MyApplication.pdaIMEI, MyApplication.getPreferences().getManageloginName("name", ""), MyApplication.pdaIMEI + "_" + System.currentTimeMillis(), System.currentTimeMillis(), userInfaoBeenRet.getContent());
                         NetUtils.deecryptionData(decryptionBeen);
                         break;
-                    case App.ERROTCODE_ENCRYPTION:
-                        MyApplication.showToast(RegisterResActivity.this, "加密数据错误");
-                        break;
-                    case App.ERROTCODE_DECRYPTION:
-                        MyApplication.showToast(RegisterResActivity.this, "解密数据错误");
-                        break;
-                    case App.ERROTCODE_PARAM_MISS:
-                        MyApplication.showToast(RegisterResActivity.this, "缺少参数");
-                        break;
-                    case App.ERROTCODE_NOTHING:
-                        MyApplication.showToast(RegisterResActivity.this, "未查询到相关内容");
-                        break;
+
                     default:
+                        MyApplication.showToast(RegisterResActivity.this, userInfaoBeenRet.getMesg());
                         break;
                 }
 

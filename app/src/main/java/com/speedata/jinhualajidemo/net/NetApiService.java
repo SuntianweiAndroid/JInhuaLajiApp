@@ -12,8 +12,6 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 /**
- * @author :Reginer in  2018/4/9 15:35.
- * 联系方式:QQ:282921012
  * 功能描述:网络请求接口
  */
 public interface NetApiService {

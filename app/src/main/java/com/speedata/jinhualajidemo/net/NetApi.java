@@ -17,8 +17,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * @author :Reginer in  2017/9/7 23:19.
- * 联系方式:QQ:282921012
  * 功能描述:请求
  */
 public class NetApi {

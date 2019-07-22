@@ -56,10 +56,7 @@ public class TitleBarView  extends LinearLayout
             @Override
             public void onClick(View v)
             {
-//                if (Utility.isFastDoubleClick())
-//                {
-//                    return;
-//                }
+
 
                 if (mLeftButtonClickListener != null)
                 {
@@ -72,11 +69,6 @@ public class TitleBarView  extends LinearLayout
             @Override
             public void onClick(View v)
             {
-//                if (Utility.isFastDoubleClick())
-//                {
-//                    return;
-//                }
-
                 if (mRightButtonClickListener != null)
                 {
                     mRightButtonClickListener.OnRightButtonClick(v);

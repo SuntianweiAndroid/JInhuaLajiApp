@@ -77,10 +77,6 @@
             android:launchMode="singleTask"
             android:theme="@style/TranslucentTheme"/>
         <activity
-            android:name=".activity.CameraActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/TranslucentTheme"/>
-        <activity
             android:name=".activity.MenuActivity"
             android:launchMode="singleTask"
             android:theme="@style/TranslucentTheme">

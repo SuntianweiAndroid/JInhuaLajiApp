@@ -44,7 +44,7 @@ import com.speedata.jinhualajidemo.clj.fastble.scan.BleScanRuleConfig;
 import com.speedata.jinhualajidemo.utils.DataConversionUtils;
 import com.speedata.jinhualajidemo.utils.NetUtils;
 import com.speedata.jinhualajidemo.view.HintDialog;
-import com.speedata.jinhualajidemo.view.SearchBTDialog;
+import com.speedata.jinhualajidemo.view.SearchBtPrintDialog;
 import com.speedata.jinhualajidemo.view.SearchBleWeightDialog;
 
 import java.util.List;
@@ -129,48 +129,61 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         NetUtils.setNetResultCallback(new NetUtils.NetResultCallback() {
             @Override
             public void encryption(EncryptionBeenRet encryptionBeenRet) {
-                if (encryptionBeenRet.getCode().equals("1")) {
-                    if (encryptionBeenRet != null) {
+                switch (encryptionBeenRet.getCode()) {
+                    case App.SUCCESS:
                         NetUtils.manageLogin(encryptionBeenRet.getContent());
-                    }
-                } else {
-                    MyApplication.showToast(MenuActivity.this, "登录失败");
-                    hintDialog.dismiss();
+                        break;
+                    case App.ERROTCODE_NOTHING:
+                        hintDialog.dismiss();
+                        MyApplication.showToast(MenuActivity.this, "未查询到相关内容");
+                        break;
+                    default:
+                        hintDialog.dismiss();
+                        MyApplication.showToast(MenuActivity.this, encryptionBeenRet.getMesg());
+                        break;
                 }
+
             }
 
             @Override
             public void decryption(DecryptionBeenRet decryptionBeenRet) {
-                if (decryptionBeenRet.getCode().contains("1")) {
-                    MyApplication.getPreferences().setLogin("login", true);
-                    Gson gson = new Gson();
-                    LoginBeen loginBeen = gson.fromJson(decryptionBeenRet.getContent(), LoginBeen.class);
-                    MyApplication.getPreferences().setManageName("managename", loginBeen.getName());
-                    setContentView(R.layout.activity_menu);
-                    hintDialog.dismiss();
-                    initView();
-                    mTvManageName.setText(loginBeen.getName());
-                    MyApplication.getPreferences().setManageloginName("name", loginName);
-                    MyApplication.getPreferences().setManageloginName("pwd", loginPwd);
-                    initBluetooth();
-                    initBle();
-                } else {
-                    MyApplication.showToast(MenuActivity.this, "登录失败");
-                    hintDialog.dismiss();
+                switch (decryptionBeenRet.getCode()) {
+                    case App.SUCCESS:
+                        MyApplication.getPreferences().setLogin("login", true);
+                        Gson gson = new Gson();
+                        LoginBeen loginBeen = gson.fromJson(decryptionBeenRet.getContent(), LoginBeen.class);
+                        MyApplication.getPreferences().setManageName("managename", loginBeen.getName());
+                        setContentView(R.layout.activity_menu);
+                        hintDialog.dismiss();
+                        initView();
+                        mTvManageName.setText(loginBeen.getName());
+                        MyApplication.getPreferences().setManageloginName("name", loginName);
+                        MyApplication.getPreferences().setManageloginName("pwd", loginPwd);
+                        initBluetooth();
+                        initBle();
+                        break;
+                    default:
+                        hintDialog.dismiss();
+                        MyApplication.showToast(MenuActivity.this, decryptionBeenRet.getMesg());
+                        break;
                 }
+
             }
 
             @Override
             public void loginRet(LoginBeenRet loginBeenRet) {
 //                c4ca4238a0b923820dcc509a6f75849b
-                if (loginBeenRet.getCode().equals("1")) {
-                    if (loginBeenRet != null) {
-                        DecryptionBeen decryptionBeen = new DecryptionBeen(MyApplication.key, MyApplication.pdaIMEI, loginName, MyApplication.pdaIMEI + "_" + System.currentTimeMillis(), System.currentTimeMillis(), loginBeenRet.getContent());
-                        NetUtils.deecryptionData(decryptionBeen);
-                    }
-                } else {
-                    MyApplication.showToast(MenuActivity.this, "登录失败");
-                    hintDialog.dismiss();
+                switch (loginBeenRet.getCode()) {
+                    case App.SUCCESS:
+                        if (loginBeenRet != null) {
+                            DecryptionBeen decryptionBeen = new DecryptionBeen(MyApplication.key, MyApplication.pdaIMEI, loginName, MyApplication.pdaIMEI + "_" + System.currentTimeMillis(), System.currentTimeMillis(), loginBeenRet.getContent());
+                            NetUtils.deecryptionData(decryptionBeen);
+                        }
+                        break;
+                    default:
+                        hintDialog.dismiss();
+                        MyApplication.showToast(MenuActivity.this, loginBeenRet.getMesg());
+                        break;
                 }
             }
 
@@ -192,7 +205,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void netError(String msg) {
-                MyApplication.showToast(MenuActivity.this, "登录失败");
+                hintDialog.dismiss();
+                MyApplication.showToast(MenuActivity.this, msg);
             }
         });
     }
@@ -331,7 +345,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 });
                 break;
             case R.id.ble_printer:
-                SearchBTDialog searchBTDialog = new SearchBTDialog(this, R.style.MyDialogStyle, "ML31_BT");
+                SearchBtPrintDialog searchBTDialog = new SearchBtPrintDialog(this, R.style.MyDialogStyle, "ML31_BT");
                 searchBTDialog.setCanceledOnTouchOutside(false);
                 searchBTDialog.show();
                 break;

@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,16 +17,13 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.android_print_sdk.PrinterType;
 import com.android_print_sdk.bluetooth.BluetoothPrinter;
+import com.speedata.jinhualajidemo.App;
 import com.speedata.jinhualajidemo.MyApplication;
 import com.speedata.jinhualajidemo.R;
 import com.speedata.jinhualajidemo.clj.blesample.adapter.DeviceAdapter;
@@ -35,12 +31,9 @@ import com.speedata.jinhualajidemo.clj.fastble.BleManager;
 import com.speedata.jinhualajidemo.clj.fastble.data.BleDevice;
 import com.speedata.jinhualajidemo.utils.ClsUtils;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class SearchBTDialog extends Dialog implements View.OnClickListener {
+public class SearchBtPrintDialog extends Dialog implements View.OnClickListener {
     private Context context;
 
     @Override
@@ -58,7 +51,6 @@ public class SearchBTDialog extends Dialog implements View.OnClickListener {
                 break;
             case R.id.btn_close:
                 this.dismiss();
-                ;
                 break;
 
             default:
@@ -75,25 +67,26 @@ public class SearchBTDialog extends Dialog implements View.OnClickListener {
     private String[] BlName = null;
     private BluetoothDevice device = null;
 
-    public SearchBTDialog(Context context) {
+    public SearchBtPrintDialog(Context context) {
         super(context);
         this.context = context;
     }
 
-    public SearchBTDialog(Context context, int theme, String... Blname) {
+    public SearchBtPrintDialog(Context context, int theme, String... Blname) {
         super(context, theme);
         this.context = context;
         this.BlName = Blname;
     }
 
 
-    BluetoothAdapter btAdapt;
+    private BluetoothAdapter btAdapt;
+    private boolean isConnect = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);
-        bPrinter = MyApplication.getLajiBeen().getbPrinter();
+        bPrinter = App.bPrinter;
         saveMac = MyApplication.getPreferences().getMac("mac");
         mac = saveMac.split("#");
         initView();
@@ -155,7 +148,7 @@ public class SearchBTDialog extends Dialog implements View.OnClickListener {
                 if (bPrinter != null) {
                     if (bPrinter.isConnected()) {
                         bPrinter.closeConnection();
-                        MyApplication.getLajiBeen().setbPrinter(null);
+                        App.bPrinter = null;
                     }
                 }
                 mDeviceAdapter.notifyDataSetChanged();
@@ -182,10 +175,15 @@ public class SearchBTDialog extends Dialog implements View.OnClickListener {
 
             if (mac.length >= 1 && mac[0] != "") {
                 for (int j = 0; j < mac.length; j++) {
-                    if (mac[i].equals(device.getAddress())) {
-                        if (!bPrinter.isConnected()) {
+                    if (mac[j].equals(device.getAddress())) {
+                        if (bPrinter == null) {
                             initPrinter(device);
+                        } else {
+                            if (!bPrinter.isConnected()) {
+                                initPrinter(device);
+                            }
                         }
+
                     }
                 }
             }
@@ -261,7 +259,7 @@ public class SearchBTDialog extends Dialog implements View.OnClickListener {
                 if (device != null && bPrinter != null) {
                     if (bPrinter.getMacAddress().equals(device.getAddress())) {
                         bPrinter.closeConnection();
-                        MyApplication.getLajiBeen().setbPrinter(null);
+                        App.bPrinter = null;
                     }
                 }
             } else if (action.equals(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)) {
@@ -321,18 +319,20 @@ public class SearchBTDialog extends Dialog implements View.OnClickListener {
                     break;
                 case BluetoothPrinter.Handler_Connect_Success:
                     Log.d(TAG, "handleMessage: " + 101);
-                    MyApplication.getLajiBeen().setbPrinter(bPrinter);
+                    App.bPrinter = bPrinter;
                     mDeviceAdapter.notifyDataSetChanged();
                     String strMac = MyApplication.getPreferences().getMac("mac");
                     if (!strMac.contains(device.getAddress())) {
                         MyApplication.getPreferences().setMac("mac", device.getAddress());
                     }
+                    isConnect = true;
                     // mTitle.setText(getString(R.string.title_connected) + ": "+ mPrinter.getPrinterName());
                     Toast.makeText(context, R.string.bt_connect_success, Toast.LENGTH_SHORT).show();
                     break;
                 case BluetoothPrinter.Handler_Connect_Failed:
                     //mTitle.setText(R.string.title_not_connected);
                     Log.d(TAG, "handleMessage: " + 102);
+                    isConnect = false;
                     Toast.makeText(context, R.string.bt_connect_failed, Toast.LENGTH_SHORT).show();
                     break;
                 case BluetoothPrinter.Handler_Connect_Closed:

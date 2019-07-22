@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.speedata.jinhualajidemo.App;
 import com.speedata.jinhualajidemo.MyApplication;
 import com.speedata.jinhualajidemo.clj.fastble.BleManager;
 import com.speedata.jinhualajidemo.clj.fastble.data.BleDevice;
@@ -117,8 +118,8 @@ public class DeviceAdapter extends BaseAdapter {
                 Log.i("swwwwww", "getView: " + bleDevice.getName());
                 if (bleDevice.getDevice().getBondState() == BluetoothDevice.BOND_BONDED) {
                     isBound = true;
-                    if (MyApplication.getLajiBeen().getbPrinter() != null) {
-                        if (MyApplication.getLajiBeen().getbPrinter().isConnected()) {
+                    if (App.bPrinter != null) {
+                        if (App.bPrinter.isConnected()) {
                             isConnected = true;
                         } else {
                             isConnected = false;

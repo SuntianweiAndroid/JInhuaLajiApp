@@ -35,7 +35,7 @@ import com.speedata.jinhualajidemo.clj.fastble.exception.BleException;
 import com.speedata.jinhualajidemo.clj.fastble.scan.BleScanRuleConfig;
 import com.speedata.jinhualajidemo.utils.DataConversionUtils;
 import com.speedata.jinhualajidemo.utils.ScanManage;
-import com.speedata.jinhualajidemo.view.SearchBTDialog;
+import com.speedata.jinhualajidemo.view.SearchBtPrintDialog;
 import com.speedata.jinhualajidemo.view.SearchBleWeightDialog;
 
 import org.greenrobot.eventbus.EventBus;
@@ -228,8 +228,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                 break;
             case R.id.btn_quzheng:
-                intent = new Intent(this, CameraActivity.class);
-                startActivity(intent);
                 break;
             case R.id.btn_print:
                 break;
@@ -238,7 +236,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.btn_hao:
                 break;
             case R.id.btn_henhao:
-                SearchBTDialog searchTags = new SearchBTDialog(this);
+                SearchBtPrintDialog searchTags = new SearchBtPrintDialog(this);
                 searchTags.setCanceledOnTouchOutside(false);
                 searchTags.setTitle("请搜索蓝牙设备");
                 searchTags.show();

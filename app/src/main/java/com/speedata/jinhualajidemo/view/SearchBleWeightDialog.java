@@ -28,7 +28,6 @@ import java.util.List;
 
 public class SearchBleWeightDialog extends Dialog implements View.OnClickListener {
     private DeviceAdapter mDeviceAdapter;
-    private ProgressDialog progressDialog;
     private TextView btn_scan, btn_close;
     private Context context;
     private Animation operatingAnim;
@@ -68,7 +67,6 @@ public class SearchBleWeightDialog extends Dialog implements View.OnClickListene
         btn_close.setOnClickListener(this);
         operatingAnim = AnimationUtils.loadAnimation(context, R.anim.rotate);
         operatingAnim.setInterpolator(new LinearInterpolator());
-        progressDialog = new ProgressDialog(context);
 
         mDeviceAdapter = new DeviceAdapter(context, true);
         mDeviceAdapter.setOnDeviceClickListener(new DeviceAdapter.OnDeviceClickListener() {
@@ -169,26 +167,21 @@ public class SearchBleWeightDialog extends Dialog implements View.OnClickListene
         BleManager.getInstance().connect(mac, new BleGattCallback() {
             @Override
             public void onStartConnect() {
-                progressDialog.show();
             }
 
             @Override
             public void onConnectFail(BleDevice bleDevice, BleException exception) {
-                progressDialog.dismiss();
                 Toast.makeText(context, context.getString(R.string.connect_fail), Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onConnectSuccess(BleDevice bleDevice, BluetoothGatt gatt, int status) {
-                progressDialog.dismiss();
                 mDeviceAdapter.addDevice(bleDevice);
                 mDeviceAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onDisConnected(boolean isActiveDisConnected, BleDevice bleDevice, BluetoothGatt gatt, int status) {
-                progressDialog.dismiss();
-
                 mDeviceAdapter.removeDevice(bleDevice);
                 mDeviceAdapter.notifyDataSetChanged();
 //                connect(bleDevice);
@@ -207,19 +200,16 @@ public class SearchBleWeightDialog extends Dialog implements View.OnClickListene
         BleManager.getInstance().connect(bleDevice, new BleGattCallback() {
             @Override
             public void onStartConnect() {
-                progressDialog.show();
             }
 
             @Override
             public void onConnectFail(BleDevice bleDevice, BleException exception) {
                 btn_scan.setText(context.getString(R.string.start_scan));
-                progressDialog.dismiss();
                 Toast.makeText(context, context.getString(R.string.connect_fail), Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onConnectSuccess(BleDevice bleDevice, BluetoothGatt gatt, int status) {
-                progressDialog.dismiss();
                 mDeviceAdapter.addDevice(bleDevice);
                 mDeviceAdapter.notifyDataSetChanged();
                 String strMac = MyApplication.getPreferences().getMac("mac");
@@ -230,7 +220,6 @@ public class SearchBleWeightDialog extends Dialog implements View.OnClickListene
 
             @Override
             public void onDisConnected(boolean isActiveDisConnected, BleDevice bleDevice, BluetoothGatt gatt, int status) {
-                progressDialog.dismiss();
 
                 mDeviceAdapter.removeDevice(bleDevice);
                 mDeviceAdapter.notifyDataSetChanged();
@@ -250,26 +239,22 @@ public class SearchBleWeightDialog extends Dialog implements View.OnClickListene
         BleManager.getInstance().connect(mac, new BleGattCallback() {
             @Override
             public void onStartConnect() {
-                progressDialog.show();
             }
 
             @Override
             public void onConnectFail(BleDevice bleDevice, BleException exception) {
                 btn_scan.setText(context.getString(R.string.start_scan));
-                progressDialog.dismiss();
                 Toast.makeText(context, context.getString(R.string.connect_fail), Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onConnectSuccess(BleDevice bleDevice, BluetoothGatt gatt, int status) {
-                progressDialog.dismiss();
                 mDeviceAdapter.addDevice(bleDevice);
                 mDeviceAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onDisConnected(boolean isActiveDisConnected, BleDevice bleDevice, BluetoothGatt gatt, int status) {
-                progressDialog.dismiss();
 
                 mDeviceAdapter.removeDevice(bleDevice);
                 mDeviceAdapter.notifyDataSetChanged();

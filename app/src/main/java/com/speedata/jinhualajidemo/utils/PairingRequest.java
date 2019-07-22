@@ -1,23 +1,10 @@
 package com.speedata.jinhualajidemo.utils;
 
-import android.app.AlertDialog;
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.WindowManager;
 import android.widget.Toast;
-
-import com.android_print_sdk.bluetooth.BluetoothPrinter;
-import com.speedata.jinhualajidemo.MyApplication;
-import com.speedata.jinhualajidemo.R;
-import com.speedata.jinhualajidemo.activity.CheckBConnectActivity;
-import com.speedata.jinhualajidemo.view.SearchBTDialog;
-import com.speedata.jinhualajidemo.view.SearchBleWeightDialog;
 
 public class PairingRequest extends BroadcastReceiver {
     private String strPsw = "1234";

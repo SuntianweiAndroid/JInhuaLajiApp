@@ -1,5 +1,6 @@
 package com.speedata.jinhualajidemo.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -29,14 +31,13 @@ import com.speedata.jinhualajidemo.R;
 import com.speedata.jinhualajidemo.been.DecryptionBeenRet;
 import com.speedata.jinhualajidemo.been.EncryptionBeenRet;
 import com.speedata.jinhualajidemo.been.EncryptionScoreBeenRet;
-import com.speedata.jinhualajidemo.been.LajiBeen;
 import com.speedata.jinhualajidemo.been.LoginBeenRet;
 import com.speedata.jinhualajidemo.been.NetResultBeen;
 import com.speedata.jinhualajidemo.been.UploadScoreBeenRet;
 import com.speedata.jinhualajidemo.utils.LogUtil;
 import com.speedata.jinhualajidemo.utils.NetUtils;
 import com.speedata.jinhualajidemo.view.HintDialog;
-import com.speedata.jinhualajidemo.view.SearchBTDialog;
+import com.speedata.jinhualajidemo.view.SearchBtPrintDialog;
 import com.speedata.jinhualajidemo.view.TitleBarView;
 
 import java.io.ByteArrayInputStream;
@@ -47,10 +48,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.CountDownLatch;
 
 public class PutRecordActivity extends AppCompatActivity implements View.OnClickListener {
-    private String TAG = "PutRecordActivity";
-    private LajiBeen lajiBeen;
     /**
      * +3
      */
@@ -70,6 +70,7 @@ public class PutRecordActivity extends AppCompatActivity implements View.OnClick
     private TextView mTvShow;
     private String bg64;
     private String qrinfo;
+    private String qrCode;
     /**
      * 刘小霞
      */
@@ -85,31 +86,36 @@ public class PutRecordActivity extends AppCompatActivity implements View.OnClick
 
     private boolean isUplod = false;
     private HintDialog hintDialog;
+    private String printMsg = "未知垃圾";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_put_record);
         hintDialog = new HintDialog(this, R.style.hintdialog);
-        hintDialog.setHintMsg("数据上传并打印中...");
+        hintDialog.setHintMsg("数据打印并上传中...");
         initView();
         setMyAppTitle();
-        lajiBeen = MyApplication.getLajiBeen();
-        Log.i("stw", "onCreate: " + lajiBeen.toString());
+
         switch (App.garbageType) {
             case 7:
                 setLClassify(R.mipmap.icon_garbage1_s, "厨余垃圾");
+                printMsg = "厨余垃圾";
                 break;
             case 3:
+                printMsg = "可回收垃圾";
                 setLClassify(R.mipmap.icon_garbage2_s, "可回收垃圾");
                 break;
             case 4:
+                printMsg = "有害垃圾";
                 setLClassify(R.mipmap.icon_garbage3_s, "有害垃圾");
                 break;
             case 8:
+                printMsg = "其它垃圾";
                 setLClassify(R.mipmap.icon_garbage4_s, "其它垃圾");
                 break;
             default:
+                printMsg = "未知垃圾";
                 setLClassify(R.mipmap.icon_garbage4_s, "未知垃圾");
                 break;
         }
@@ -135,9 +141,18 @@ public class PutRecordActivity extends AppCompatActivity implements View.OnClick
         }
         // TODO: 2019/7/17  最先拿到要生成 的 二维SkJpegCodec码数据
         JsonObject jsonObject = new JsonObject();
-        String qrcode = App.garbageType + ":ICM_JH_" + MyApplication.pdaIMEI + "_" + System.currentTimeMillis();
-        jsonObject.addProperty("htCode", qrcode);
+        qrCode = App.garbageType + ":ICM_JH_" + MyApplication.pdaIMEI + "_" + System.currentTimeMillis();
+        jsonObject.addProperty("htCode", qrCode);
+
+        LogUtil.i("qrcode==" + qrCode);
         NetUtils.getQrcodeInfo(jsonObject.toString());
+//        if (App.bPrinter == null || !App.bPrinter.isConnected()) {
+//            MyApplication.showToast(this, "请先连接打印机");
+//            SearchBtPrintDialog searchBTDialog = new SearchBtPrintDialog(this, R.style.MyDialogStyle, "ML31_BT");
+//            searchBTDialog.setCanceledOnTouchOutside(false);
+//            searchBTDialog.show();
+//            return;
+//        }
         NetUtils.setNetResultCallback(new NetUtils.NetResultCallback() {
             @Override
             public void encryption(EncryptionBeenRet encryptionBeenRet) {
@@ -145,27 +160,10 @@ public class PutRecordActivity extends AppCompatActivity implements View.OnClick
                     case App.SUCCESS:
                         NetUtils.uploadScore(encryptionBeenRet.getContent());
                         break;
-                    case App.ERROTCODE_ENCRYPTION:
-                        isUplod = false;
-                        hintDialog.dismiss();
-                        MyApplication.showToast(PutRecordActivity.this, "加密数据错误");
-                        break;
-                    case App.ERROTCODE_DECRYPTION:
-                        isUplod = false;
-                        hintDialog.dismiss();
-                        MyApplication.showToast(PutRecordActivity.this, "解密数据错误");
-                        break;
-                    case App.ERROTCODE_PARAM_MISS:
-                        isUplod = false;
-                        hintDialog.dismiss();
-                        MyApplication.showToast(PutRecordActivity.this, "缺少参数");
-                        break;
-                    case App.ERROTCODE_NOTHING:
-                        isUplod = false;
-                        hintDialog.dismiss();
-                        MyApplication.showToast(PutRecordActivity.this, "未查询到相关内容");
-                        break;
                     default:
+                        isUplod = false;
+                        hintDialog.dismiss();
+                        MyApplication.showToast(PutRecordActivity.this, encryptionBeenRet.getMesg());
                         break;
                 }
 
@@ -191,31 +189,12 @@ public class PutRecordActivity extends AppCompatActivity implements View.OnClick
             public void getQrcodeInfo(EncryptionBeenRet encryptionBeenRet) {
                 switch (encryptionBeenRet.getCode()) {
                     case App.SUCCESS:
-
                         qrinfo = encryptionBeenRet.getContent();
-
-                        break;
-                    case App.ERROTCODE_ENCRYPTION:
-                        isUplod = false;
-                        hintDialog.dismiss();
-                        MyApplication.showToast(PutRecordActivity.this, "加密数据错误");
-                        break;
-                    case App.ERROTCODE_DECRYPTION:
-                        isUplod = false;
-                        hintDialog.dismiss();
-                        MyApplication.showToast(PutRecordActivity.this, "解密数据错误");
-                        break;
-                    case App.ERROTCODE_PARAM_MISS:
-                        isUplod = false;
-                        hintDialog.dismiss();
-                        MyApplication.showToast(PutRecordActivity.this, "缺少参数");
-                        break;
-                    case App.ERROTCODE_NOTHING:
-                        isUplod = false;
-                        hintDialog.dismiss();
-                        MyApplication.showToast(PutRecordActivity.this, "未查询到相关内容");
                         break;
                     default:
+                        isUplod = false;
+                        hintDialog.dismiss();
+                        MyApplication.showToast(PutRecordActivity.this, encryptionBeenRet.getMesg());
                         break;
                 }
 
@@ -232,27 +211,10 @@ public class PutRecordActivity extends AppCompatActivity implements View.OnClick
                         Intent intent = new Intent(PutRecordActivity.this, ResultActivity.class);
                         startActivity(intent);
                         break;
-                    case App.ERROTCODE_ENCRYPTION:
-                        isUplod = false;
-                        hintDialog.dismiss();
-                        MyApplication.showToast(PutRecordActivity.this, "加密数据错误");
-                        break;
-                    case App.ERROTCODE_DECRYPTION:
-                        isUplod = false;
-                        hintDialog.dismiss();
-                        MyApplication.showToast(PutRecordActivity.this, "解密数据错误");
-                        break;
-                    case App.ERROTCODE_PARAM_MISS:
-                        isUplod = false;
-                        hintDialog.dismiss();
-                        MyApplication.showToast(PutRecordActivity.this, "缺少参数");
-                        break;
-                    case App.ERROTCODE_NOTHING:
-                        isUplod = false;
-                        hintDialog.dismiss();
-                        MyApplication.showToast(PutRecordActivity.this, "未查询到相关内容");
-                        break;
                     default:
+                        isUplod = false;
+                        hintDialog.dismiss();
+                        MyApplication.showToast(PutRecordActivity.this, uploadScoreBeenRet.getMesg());
                         break;
                 }
 
@@ -290,8 +252,7 @@ public class PutRecordActivity extends AppCompatActivity implements View.OnClick
         titleBarView.setOnLeftButtonClickListener(new TitleBarView.OnLeftButtonClickListener() {
             @Override
             public void onLeftButtonClick(View v) {
-                Intent intent = new Intent(PutRecordActivity.this, MenuActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
@@ -384,11 +345,14 @@ public class PutRecordActivity extends AppCompatActivity implements View.OnClick
             default:
                 break;
             case R.id.btn_up:
-                hintDialog.show();
+
                 if (qrinfo != null) {
-                    print(lajiBeen.getbPrinter(), qrinfo);
+                    hintDialog.show();
+                    print(App.bPrinter, qrinfo);
+                } else {
+                    MyApplication.showToast(PutRecordActivity.this, "二维码未生成");
+                    return;
                 }
-                sendEencyption();
                 break;
             case R.id.tv_show:
                 takePhoto();
@@ -397,7 +361,7 @@ public class PutRecordActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void sendEencyption() {
-        EncryptionScoreBeenRet.ContentBean contentBean = new EncryptionScoreBeenRet.ContentBean(App.userInfo.getCardId(), App.score, bg64, App.garbageType, qrinfo);
+        EncryptionScoreBeenRet.ContentBean contentBean = new EncryptionScoreBeenRet.ContentBean(App.userInfo.getCardId(), App.score, bg64, App.garbageType, qrCode);
 
         EncryptionScoreBeenRet encryptionBeen = new EncryptionScoreBeenRet(MyApplication.pdaIMEI + "_" + System.currentTimeMillis(), contentBean, MyApplication.pdaIMEI, MyApplication.getPreferences().getManageloginName("name", ""), MyApplication.key, System.currentTimeMillis());
         final Gson gson = new GsonBuilder().serializeNulls().create();
@@ -406,27 +370,39 @@ public class PutRecordActivity extends AppCompatActivity implements View.OnClick
         NetUtils.encryptionData(resultData);
     }
 
-    private void print(BluetoothPrinter bPrinter, String msg) {
+    private void print(final BluetoothPrinter bPrinter, final String msg) {
         if (bPrinter == null || !bPrinter.isConnected()) {
             MyApplication.showToast(this, "请先连接打印机");
-            SearchBTDialog searchBTDialog = new SearchBTDialog(this, R.style.MyDialogStyle, "ML31_BT");
+            final SearchBtPrintDialog searchBTDialog = new SearchBtPrintDialog(this, R.style.MyDialogStyle, "ML31_BT");
             searchBTDialog.setCanceledOnTouchOutside(false);
             searchBTDialog.show();
+            searchBTDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    if (App.bPrinter == null) {
+                        searchBTDialog.show();
+                    } else {
+                        App.bPrinter.setPage(576, 400);
+                        App.bPrinter.printText("CENTER\r\n");
+                        App.bPrinter.drawText(0, 0, "您投入的是" + printMsg, 2, 0, 0, false, false);
+                        App.bPrinter.drawText(0, 32, "请扫描二维码投放垃圾", 2, 0, 0, false, false);
+                        App.bPrinter.drawQrCode(0, 80, 2, 7, msg, 0);
 
-            return;
+                        App.bPrinter.labelPrint(0, 1);
+                        sendEencyption();
+                    }
+                }
+            });
+        } else {
+            App.bPrinter.setPage(576, 400);
+            App.bPrinter.printText("CENTER\r\n");
+            App.bPrinter.drawText(0, 0, "您投入的是" + printMsg, 2, 0, 0, false, false);
+            App.bPrinter.drawText(0, 32, "请扫描二维码投放垃圾", 2, 0, 0, false, false);
+            App.bPrinter.drawQrCode(0, 80, 2, 7, msg, 0);
+
+            App.bPrinter.labelPrint(0, 1);
+            sendEencyption();
         }
-        bPrinter.setPage(576, 400);
-        bPrinter.printText("CENTER\r\n");
-        bPrinter.drawText(0, 0, "金华垃圾", 2, 0, 0, false, false);
-        bPrinter.drawText(0, 32, "请扫描二维码投放垃圾", 2, 0, 0, false, false);
-        bPrinter.drawQrCode(0, 80, 2, 9, msg, 0);
-
-        bPrinter.labelPrint(0, 1);
-        if (bPrinter.isPrintOK()) {
-            Intent intent = new Intent(this, ResultActivity.class);
-            startActivity(intent);
-        }
-
     }
 
     private Uri mImageUri;
